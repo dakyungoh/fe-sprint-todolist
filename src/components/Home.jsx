@@ -4,9 +4,15 @@ import Style from "./Style";
 
 function Home() {
   const navigate = useNavigate();
-  function onclickStartButton() {}
-  function onclickMemoButton() {}
-  function onclickMadeButton() {}
+  function onclickStartButton() {
+    navigate("/todo-list");
+  }
+  function onclickMemoButton() {
+    navigate("/memo");
+  }
+  function onclickMadeButton() {
+    navigate("/made");
+  }
   return (
     <Style.home>
       <div className="photo">
