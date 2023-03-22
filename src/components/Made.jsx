@@ -1,5 +1,5 @@
 import Style from "./Style";
-import photo from "./img/2.png";
+import photo from "../assets/img/2.png";
 import { useNavigate } from "react-router-dom";
 
 export default function Made() {

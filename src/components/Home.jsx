@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import photo from "./img/2.png";
+import photo from "../assets/img/2.png";
 import Style from "./Style";
 
 function Home() {
