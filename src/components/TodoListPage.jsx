@@ -5,7 +5,7 @@ import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 
-import { getAllTodoList } from "../mock/api";
+import { getAllTodoList, deleteTodoItem } from "../mock/api";
 
 function TodoListPage() {
   const navigate = useNavigate();
@@ -15,14 +15,19 @@ function TodoListPage() {
 
   // 컴포넌트가 최초로 렌더링될 때 실행되게하려면 두번째 매개변수를 빈 배열로 한다.
   useEffect(() => {
+    getCurrentTodoList();
+  }, []);
+
+  function getCurrentTodoList() {
     const currentTodoList = getAllTodoList();
     setTodoList(currentTodoList);
-  });
+  }
 
   function movoToHomeButton() {
     navigate("/");
   }
 
+  // TODO: mock api 연동
   function onclickAddButton() {
     setTodoList([...todoList, { name: newTodo, isDone: false }]);
     setNewTodo("");
@@ -35,11 +40,11 @@ function TodoListPage() {
   }
 
   function onclickDeleteButton(index) {
-    const nextTodoList = [...todoList];
-    nextTodoList.splice(index, 1);
-    setTodoList(nextTodoList);
+    deleteTodoItem(index);
+    getCurrentTodoList();
   }
 
+  // TODO: mock api 연동
   function onChangeCheckboxButton(event, index) {
     const nextTodoList = [...todoList];
     nextTodoList[index].isDone = event.target.checked;
