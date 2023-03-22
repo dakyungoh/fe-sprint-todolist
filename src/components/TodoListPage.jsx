@@ -3,47 +3,41 @@ import Style from "./Style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import data from "../mock/data";
 
 function TodoListPage() {
   const navigate = useNavigate();
   // TODO: Mock API로 분리하기
-  const [todoItems, setTodoItems] = useState([
-    "공부하기",
-    "밥 먹기",
-    "산책하기",
-  ]);
+  const [todoList, setTodoList] = useState(data || []);
   const [newTodo, setNewTodo] = useState("");
-  const [isChecked, setIsChecked] = useState([false, false, false]);
 
   function movoToHomeButton() {
     navigate("/");
   }
 
   function onclickAddButton() {
-    setTodoItems([...todoItems, newTodo]);
-    setIsChecked([...isChecked, false]);
+    setTodoList([...todoList, { name: newTodo, isDone: false }]);
     setNewTodo("");
   }
 
   function activeEnter(e) {
     if (e.key === "Enter") {
-      setTodoItems([...todoItems, newTodo]);
-      setNewTodo("");
+      onclickAddButton();
     }
-    setIsChecked([...isChecked, false]);
   }
 
   function onclickDeleteButton(index) {
-    const deleteButton = [...todoItems];
-    deleteButton.splice(index, 1);
-    setTodoItems(deleteButton);
+    const nextTodoList = [...todoList];
+    nextTodoList.splice(index, 1);
+    setTodoList(nextTodoList);
   }
 
-  function onclickCheckboxButton(event, index) {
-    const checkboxButton = [...isChecked];
-    checkboxButton[index] = event.target.checked;
-    setIsChecked(checkboxButton);
+  function onChangeCheckboxButton(event, index) {
+    const nextTodoList = [...todoList];
+    nextTodoList[index].isDone = event.target.checked;
+    setTodoList(nextTodoList);
   }
 
   return (
@@ -55,7 +49,7 @@ function TodoListPage() {
           onClick={movoToHomeButton}
         />
         <h1>📝 Todo List</h1>
-        <p className="totalCount">Total : {todoItems.length}</p>
+        <p className="totalCount">Total : {todoList.length}</p>
         <div className="input">
           <input
             className="inputBox"
@@ -70,20 +64,17 @@ function TodoListPage() {
           </button>
         </div>
         <div className="todo-list">
-          {todoItems.map((todoItems, index) => (
+          {todoList.map((todoItem, index) => (
             <div className="todo-item" key={index}>
               <input
                 className="checkbox"
                 type="checkbox"
-                onClick={(event) => onclickCheckboxButton(event, index)}
-                checked={isChecked[index]}
+                onChange={(event) => onChangeCheckboxButton(event, index)}
+                checked={todoItem.isDone}
               />
-              {isChecked[index] === false ? (
-                <span className="todoItems">{todoItems}</span>
-              ) : (
-                <span className="line-through ">{todoItems}</span>
-              )}
-
+              <span className={todoItem.isDone ? "line-through" : ""}>
+                {todoItem.name}
+              </span>
               <button
                 className="trashcan"
                 onClick={() => onclickDeleteButton(index)}
