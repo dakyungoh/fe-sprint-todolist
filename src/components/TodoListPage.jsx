@@ -5,13 +5,19 @@ import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 
-import data from "../mock/data";
+import { getAllTodoList } from "../mock/api";
 
 function TodoListPage() {
   const navigate = useNavigate();
   // TODO: Mock API로 분리하기
-  const [todoList, setTodoList] = useState(data || []);
+  const [todoList, setTodoList] = useState([]);
   const [newTodo, setNewTodo] = useState("");
+
+  // 컴포넌트가 최초로 렌더링될 때 실행되게하려면 두번째 매개변수를 빈 배열로 한다.
+  useEffect(() => {
+    const currentTodoList = getAllTodoList();
+    setTodoList(currentTodoList);
+  });
 
   function movoToHomeButton() {
     navigate("/");
