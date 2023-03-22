@@ -7,6 +7,7 @@ import { useState } from "react";
 
 function TodoListPage() {
   const navigate = useNavigate();
+  // TODO: Mock API로 분리하기
   const [todoItems, setTodoItems] = useState([
     "공부하기",
     "밥 먹기",
