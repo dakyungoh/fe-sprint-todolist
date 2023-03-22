@@ -3,7 +3,6 @@ import Style from "./Style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-
 import { useState } from "react";
 
 function TodoListPage() {
@@ -14,6 +13,7 @@ function TodoListPage() {
     "산책하기",
   ]);
   const [newTodo, setNewTodo] = useState("");
+  const [isChecked, setIsChecked] = useState([false, false, false]);
 
   function movoToHomeButton() {
     navigate("/");
@@ -21,6 +21,7 @@ function TodoListPage() {
 
   function onclickAddButton() {
     setTodoItems([...todoItems, newTodo]);
+    setIsChecked([...isChecked, false]);
     setNewTodo("");
   }
 
@@ -29,6 +30,7 @@ function TodoListPage() {
       setTodoItems([...todoItems, newTodo]);
       setNewTodo("");
     }
+    setIsChecked([...isChecked, false]);
   }
 
   function onclickDeleteButton(index) {
@@ -36,39 +38,62 @@ function TodoListPage() {
     deleteButton.splice(index, 1);
     setTodoItems(deleteButton);
   }
+
+  function onclickCheckboxButton(event, index) {
+    const checkboxButton = [...isChecked];
+    checkboxButton[index] = event.target.checked;
+    setIsChecked(checkboxButton);
+  }
+
   return (
-    <div className="todo">
-      <FontAwesomeIcon icon={faHouse} onClick={movoToHomeButton} />
-      <h1>📝 Todo List</h1>
-      <p>Total : {todoItems.length}</p>
-      <input
-        className="inputBox"
-        type="text"
-        placeholder="할 일을 입력하세요"
-        value={newTodo}
-        onChange={(event) => setNewTodo(event.target.value)}
-        onKeyDown={activeEnter}
-      ></input>
-      <button className="todoInputButton" onClick={onclickAddButton}>
-        +
-      </button>
-      <div className="todo-list">
-        <ul>
+    <Style.TodoListPage>
+      <div className="todo">
+        <FontAwesomeIcon
+          className="homeButton"
+          icon={faHouse}
+          onClick={movoToHomeButton}
+        />
+        <h1>📝 Todo List</h1>
+        <p className="totalCount">Total : {todoItems.length}</p>
+        <div className="input">
+          <input
+            className="inputBox"
+            type="text"
+            placeholder="할 일을 입력하세요"
+            value={newTodo}
+            onChange={(event) => setNewTodo(event.target.value)}
+            onKeyDown={activeEnter}
+          ></input>
+          <button className="todoInputButton" onClick={onclickAddButton}>
+            +
+          </button>
+        </div>
+        <div className="todo-list">
           {todoItems.map((todoItems, index) => (
-            <li key={index}>
-              <input className="checkbox" type="checkbox" />
-              <span>{todoItems}</span>
+            <div className="todo-item" key={index}>
+              <input
+                className="checkbox"
+                type="checkbox"
+                onClick={(event) => onclickCheckboxButton(event, index)}
+                checked={isChecked[index]}
+              />
+              {isChecked[index] === false ? (
+                <span className="todoItems">{todoItems}</span>
+              ) : (
+                <span className="line-through ">{todoItems}</span>
+              )}
+
               <button
                 className="trashcan"
                 onClick={() => onclickDeleteButton(index)}
               >
                 <FontAwesomeIcon icon={faTrashCan} />
               </button>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
-    </div>
+    </Style.TodoListPage>
   );
 }
 export default TodoListPage;

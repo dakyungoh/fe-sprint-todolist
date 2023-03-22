@@ -6,7 +6,10 @@ import Memo from "./components/Memo";
 
 function App() {
   return (
-    <div className="home">
+    <div
+      className="app"
+      style={{ backgroundColor: "#eff", minHeight: "100vh" }}
+    >
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}></Route>
