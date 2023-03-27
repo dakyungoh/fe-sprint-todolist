@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
-import { getAllTodoList, addTodoItem, deleteTodoItem } from "../mock/api";
+import { getAllTodoList, deleteTodoItem } from "../mock/api";
 
 function TodoListPage() {
   const navigate = useNavigate();
@@ -27,9 +27,14 @@ function TodoListPage() {
   }
 
   // TODO: mock api 연동
+  // function onclickAddButton() {
+  //   addTodoItem();
+  //   getCurrentTodoList();
+  //   setNewTodo("");
+  // }
+
   function onclickAddButton() {
-    addTodoItem(newTodo);
-    getCurrentTodoList();
+    setTodoList([...todoList, { name: newTodo, isDone: false }]);
     setNewTodo("");
   }
 

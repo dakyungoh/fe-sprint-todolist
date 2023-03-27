@@ -17,10 +17,16 @@ function getAllTodoList() {
   return todoList;
 }
 
+function addTodoItem(text) {
+  const newTodoList = [...todoList];
+  newTodoList.push({ name: text, isDone: false });
+  todoList = newTodoList;
+}
+
 function deleteTodoItem(index) {
   const nextTodoList = [...todoList];
   nextTodoList.splice(index, 1);
   todoList = nextTodoList;
 }
 
-export { getAllTodoList, deleteTodoItem };
+export { getAllTodoList, addTodoItem, deleteTodoItem };

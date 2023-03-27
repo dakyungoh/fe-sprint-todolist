@@ -5,8 +5,9 @@ const home = styled.div`
     width: 300px;
     height: 300px;
     border-radius: 20px;
-    margin: 100px auto 10px auto;
+    margin: 0 auto;
     display: flex;
+    padding-top: 80px;
   }
   p {
     font-size: 40px;
@@ -39,7 +40,7 @@ const made = styled.div`
   .photoImage {
     width: 300px;
     height: 300px;
-    border-radius: 200px;
+    border-radius: 20px;
     margin: 100px auto 10px auto;
     display: flex;
   }
@@ -70,7 +71,6 @@ const TodoListPage = styled.div`
     box-sizing: border-box;
   }
   .homeButton {
-    padding: 
     width: 40px;
     height: 40px;
   }

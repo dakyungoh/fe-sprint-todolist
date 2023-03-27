@@ -8,7 +8,10 @@ function App() {
   return (
     <div
       className="app"
-      style={{ backgroundColor: "#eff", minHeight: "100vh" }}
+      style={{
+        backgroundColor: "RGB(425, 253, 190)",
+        minHeight: "100vh",
+      }}
     >
       <BrowserRouter>
         <Routes>
