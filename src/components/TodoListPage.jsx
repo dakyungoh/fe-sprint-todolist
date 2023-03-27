@@ -26,7 +26,6 @@ function TodoListPage() {
     navigate("/");
   }
 
-  // TODO: mock api 연동
   function onclickAddButton() {
     addTodoItem(newTodo);
     getCurrentTodoList();
