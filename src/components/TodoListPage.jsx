@@ -4,11 +4,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
-import { getAllTodoList, addTodoItem, deleteTodoItem } from "../mock/api";
+import {
+  getAllTodoList,
+  addTodoItem,
+  deleteTodoItem,
+  updateTodoItem,
+} from "../mock/api";
 
 function TodoListPage() {
   const navigate = useNavigate();
-  // TODO: Mock API로 분리하기
+
   const [todoList, setTodoList] = useState([]);
   const [newTodo, setNewTodo] = useState("");
 
@@ -43,12 +48,13 @@ function TodoListPage() {
     getCurrentTodoList();
   }
 
-  // TODO: mock api 연동
   function onChangeCheckboxButton(event, index) {
-    const nextTodoList = [...todoList];
-    nextTodoList[index].isDone = event.target.checked;
-    setTodoList(nextTodoList);
+    const todoItem = todoList[index];
+    todoItem.isDone = event.target.checked;
+    updateTodoItem(index, todoItem);
+    getCurrentTodoList();
   }
+
   return (
     <Style.TodoListPage>
       <div className="todo">

@@ -29,4 +29,10 @@ function deleteTodoItem(index) {
   todoList = nextTodoList;
 }
 
-export { getAllTodoList, addTodoItem, deleteTodoItem };
+function updateTodoItem(index, todoItem) {
+  const nextTodoList = [...todoList];
+  nextTodoList[index] = todoItem;
+  todoList = nextTodoList;
+}
+
+export { getAllTodoList, addTodoItem, deleteTodoItem, updateTodoItem };

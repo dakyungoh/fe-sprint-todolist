@@ -22,7 +22,7 @@ function Home() {
           🔎 시작하기
         </button>
         <button className="memoButton" onClick={onclickMemoButton}>
-          🔎 어제 한 일 보러 가기
+          🔎 메모장에 적어보기
         </button>
         <button className="madeButton" onClick={onclickMadeButton}>
           🎀 만든 사람 보러 가기 🎀
