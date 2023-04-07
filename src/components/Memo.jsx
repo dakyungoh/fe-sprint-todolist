@@ -35,9 +35,9 @@ export default function Memo() {
         <button className="input-button" onClick={addContent}>
           추가
         </button>
-        <div>
+        <div className="contents">
           {contents.map((content, index) => (
-            <div key={index}>{content}</div>
+            <div key={index}>💛{content}</div>
           ))}
         </div>
       </div>
