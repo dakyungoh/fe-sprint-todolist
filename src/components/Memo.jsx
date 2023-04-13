@@ -25,7 +25,7 @@ export default function Memo() {
           icon={faHouse}
           onClick={moveToHomeButton}
         />
-        <h1 className="title"> 📌 메모장 </h1>
+        <h1 className="title"> 📌 메모장 ✍️</h1>
         <input
           className="input-contents"
           placeholder="메모내용을 입력하세요"
@@ -37,7 +37,7 @@ export default function Memo() {
         </button>
         <div className="contents">
           {contents.map((content, index) => (
-            <div key={index}>💛{content}</div>
+            <div key={index}>💛 {content}</div>
           ))}
         </div>
       </div>
