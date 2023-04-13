@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import photo from "../assets/img/2.png";
 import Style from "./Style";
+import NewWindowComponent from "../components/example";
 
 function Home() {
   const navigate = useNavigate();
@@ -26,6 +27,9 @@ function Home() {
         </button>
         <button className="madeButton" onClick={onclickMadeButton}>
           🎀 만든 사람 보러 가기 🎀
+        </button>
+        <button style={{ backgroundColor: "red", color: "white" }}>
+          <NewWindowComponent />
         </button>
       </div>
     </Style.home>
