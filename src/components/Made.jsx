@@ -13,7 +13,7 @@ export default function Made() {
         <p className="todoBy">🎀 Todo By 다경 🎀</p>
         <img className="photoImage" src={photo} />
         <p className="githubLink">
-          github : <a href="https://github.com/dakyungoh">dakyunoh</a>
+          github : <a href="https://github.com/dakyungoh">dakyungoh</a>
         </p>
         <button className="homeButton" onClick={homeButton}>
           홈으로 돌아가기
